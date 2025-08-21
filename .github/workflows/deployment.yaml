@@ -33,7 +33,7 @@ jobs:
       - name: Get AWS credentials from Secrets Manager
         id: creds
         run: |
-          secret=$(aws secretsmanager get-secret-value --secret-id my/aws/creds --query SecretString --output text)
+          secret=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id my/aws/creds --query SecretString --output text)
           echo "AWS_ACCESS_KEY_ID=$(echo $secret | jq -r .AWS_ACCESS_KEY_ID)" >> $GITHUB_ENV
           echo "AWS_SECRET_ACCESS_KEY=$(echo $secret | jq -r .AWS_SECRET_ACCESS_KEY)" >> $GITHUB_ENV
           echo "AWS_DEFAULT_REGION=$(echo $secret | jq -r .AWS_DEFAULT_REGION)" >> $GITHUB_ENV
