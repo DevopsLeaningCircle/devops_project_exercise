@@ -157,7 +157,7 @@ resource "aws_autoscaling_group" "app_asg" {
 resource "aws_launch_template" "app_lt" {
   
   name_prefix = "app-lt"
-  image_id =data.aws_ami.ubuntu.id
+  image_id = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name = "devops_key"
 
