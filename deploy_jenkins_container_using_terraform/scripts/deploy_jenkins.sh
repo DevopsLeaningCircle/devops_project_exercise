@@ -6,15 +6,9 @@ USERNAME=admin
 PASSWORD=admin
 sudo mkdir -p /DATA/jenkins
 sudo chmod 777 -v -R /DATA
-#!/bin/bash
-
-
-CONTAINER_NAME=jenkins_server
-USERNAME=admin
-PASSWORD=admin
 
 # Launching a jenkins container
-sudo docker run -d -e JAVA_OPTS="-Djenkins.install.runSetupWizard=false" -p 8080:8080 -p 50000:50000 --name $CONTAINER_NAME -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+sudo docker run -d -e JAVA_OPTS="-Djenkins.install.runSetupWizard=false" -p 8080:8080 -p 50000:50000 --name $CONTAINER_NAME -v /DATA/jenkins:/var/jenkins_home jenkins/jenkins:lts
 
 
 

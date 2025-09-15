@@ -1,6 +1,6 @@
 variable "vpc_name" {
   type = string
-  default = "Youtube_docker_playlist"
+  default = "deploy_jenkins_container_using_terraform"
 }
 
 variable "instance_type" {
