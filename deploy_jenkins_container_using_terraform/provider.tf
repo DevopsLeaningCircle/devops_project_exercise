@@ -11,7 +11,7 @@ terraform {
   backend "s3" {
     bucket = "devopslearningcircle-terraform-statefile"
     key = "youtube_docker_playlist/iac/terraform.tfstate"
-    use_lockfile = true # Ensures consistent provider versions
+    # use_lockfile = true # Ensures consistent provider versions
     encrypt = false
     region = "us-east-1"
   }

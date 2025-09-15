@@ -1,5 +1,5 @@
 
-name: Deploy application and infra with Terraform
+name: Deploy Jenkins Contianer using Terraform
 
 on:
   push:
