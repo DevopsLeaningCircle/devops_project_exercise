@@ -69,7 +69,7 @@ jobs:
 
       # Terraform Init
       - name: Terraform Init
-        working-directory: ./project_1
+        working-directory: ./deploy_jenkins_container_using_terraform
         run: |
           echo "Running terraform init command ..."
           terraform init
