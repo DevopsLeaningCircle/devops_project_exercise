@@ -6,7 +6,7 @@ on:
     branches:
       - master
     paths:
-      - "project_1/**" # trigger only when there is a change in project_1 folder
+      - "deploy_jenkins_container_using_terraform/**" # trigger only when there is a change in path
 
 env:
 
@@ -54,14 +54,6 @@ jobs:
           output=json
           EOL
 
-      # - name: Get AWS credentials from Secrets Manager
-      #   id: creds
-      #   run: |
-      #     secret=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id my/aws/creds --query SecretString --output text)
-      #     echo "AWS_ACCESS_KEY_ID=$(echo $secret | jq -r .AWS_ACCESS_KEY_ID)" >> $GITHUB_ENV
-      #     echo "AWS_SECRET_ACCESS_KEY=$(echo $secret | jq -r .AWS_SECRET_ACCESS_KEY)" >> $GITHUB_ENV
-      #     echo "AWS_DEFAULT_REGION=$(echo $secret | jq -r .AWS_DEFAULT_REGION)" >> $GITHUB_ENV
-
       - name: Validate AWS credentials configured correctly
         run: |
           aws sts get-caller-identity
@@ -83,25 +75,25 @@ jobs:
           terraform init
 
       - name: Terraform Plan
-        working-directory: ./project_1
+        working-directory: ./deploy_jenkins_container_using_terraform
         run: |
           echo "Running 'terraform plan' command ..."
           terraform plan
 
       - name: Terraform apply
-        working-directory: ./project_1
+        working-directory: ./deploy_jenkins_container_using_terraform
         run: |
           echo "Running 'terraform apply' command ..."
           terraform apply --auto-approve
 
-      - name: Waiting 6-7 minutes for you to check resource before destroy
+      - name: Waiting 5 minutes for you to check resource before destroy
         run: |
-          echo "Finish checking resource in 6-7 minutes"
-          sleep 360
+          echo "Finish checking resource in 5 minutes"
+          sleep 300
           echo "Continuing now"
 
       - name: Terraform destroy
-        working-directory: ./project_1
+        working-directory: ./deploy_jenkins_container_using_terraform
         run: |
           echo "Running 'terraform destroy' command ..."
           terraform destroy --auto-approve
